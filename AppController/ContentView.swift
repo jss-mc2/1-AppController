@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    func controlAppToControlToggleHelloWorld() {
+        if let url = URL(string: "apptocontrol://toggleHelloWorld") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("Toggle")
+                .onTapGesture(perform: {
+                    controlAppToControlToggleHelloWorld()
+                })
         }
         .padding()
     }
